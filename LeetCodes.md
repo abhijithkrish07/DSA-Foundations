@@ -107,4 +107,48 @@ class Solution:
 
         return True
 ```
-8.  
+8. Valid Palindrome ⭐
+```
+class Solution:
+    def isPalindrome(self, s: str) -> bool:    
+        s = s.lower().split()
+        s = "".join(char for word in s for char in word if char.isalnum())
+        return s == s[::-1]
+        
+```
+9. Two Sum II
+```
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        left = 0
+        right = len(numbers) - 1
+
+        while left < right:
+            if numbers[left] + numbers[right] == target:
+                return [left+1,right+1]
+            elif numbers[left] + numbers[right] < target:
+                left+=1
+            else:
+                right-=1
+        
+```
+10. 3Sum
+Brute force:
+```
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        output = []
+        oneL = {}
+        n = len(nums)
+        for i in range(n):
+            oneL[nums[i]] = i
+        for i in range(n):
+            for j in range(n):
+                k = (nums[i]+nums[j]) * -1
+                if i !=j and k in nums and oneL[k] != i and oneL[k] != j:
+                    val = sorted([nums[i],nums[j],k])
+                    if not val in output:
+                        output.append(val)
+        return output
+```
+
