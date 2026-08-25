@@ -183,4 +183,22 @@ class Solution:
             if nums[anchor] != 0: 
                 anchor+=1
 ```
-12. 
+12. Remove Duplicates from Sorted Array
+Approach
+Have an anchor, lets keep as 0th index.
+Traverse until you find a different value than that of the anchor
+Once you find that number, increment the anchor, store the different value in the anchor's index in the array
+Return the anchor+1 index(since array values start from 0, your distinct value will always be less by 1)
+```
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        n = len(nums)
+        i=0
+        for j in range(1,n):
+            if nums[i] != nums[j]:
+                i+=1
+                nums[i]= nums[j]
+            print(nums)
+        return i+1                     
+```
+13. Product of Array Except Self ⭐
