@@ -151,4 +151,36 @@ class Solution:
                         output.append(val)
         return output
 ```
-
+11. Move 0s
+Snowball approach:
+```
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        snowBall = 0
+        for i in range (len(nums)):
+            if nums[i] == 0:
+                snowBall+=1
+            elif snowBall > 0:
+                temp = nums[i]
+                nums[i]=0
+                nums[i-snowBall] = temp
+```
+Optimal approach:
+```
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        anchor = 0
+        for i in range(1,len(nums)):
+            if nums[i] != 0 and nums[anchor] == 0:
+                nums[i], nums[anchor] = nums[anchor], nums[i]
+            
+            if nums[anchor] != 0: 
+                anchor+=1
+```
+12. 
