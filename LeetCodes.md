@@ -202,3 +202,79 @@ class Solution:
         return i+1                     
 ```
 13. Product of Array Except Self ⭐
+```
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        output =  [1] * n
+        prefix = [1] * n
+        suffix = [1] * n
+        for i in range(1,n):
+            prefix[i] = nums[i-1] * prefix[i-1]
+        for i in range(n-2,-1,-1):
+            suffix[i] = nums[i+1] * suffix[i+1]
+        for i in range(n):
+            output[i] = prefix[i]*suffix[i]
+        return output
+```
+14. Longest Consecutive Sequence
+```
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n < 2:
+            return n
+        nums.sort()
+        maxCon = 1
+        currentCon = 1
+        currentNum = nums[0]
+        for i in range(1,n):
+            if nums[i] == currentNum:
+                continue
+            if nums[i] == (currentNum+1):
+                currentCon += 1
+                if currentCon > maxCon:
+                    maxCon = currentCon
+            else:
+                if currentCon > maxCon:
+                    maxCon = currentCon
+                currentCon = 1
+            currentNum = nums[i]
+        return maxCon
+```
+15. Majority Element
+```
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        n = len(nums)
+        threshold = n/2
+        majority = 1
+        output = defaultdict(int)
+        for num in nums:
+            output[num]+=1
+        for (key,val) in output.items():
+            if val > threshold:
+                majority = key
+        return majority
+```
+16. Merge Sorted Array
+```
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        i = m -1
+        j = n -1
+        k = m + n -1
+
+        while j >= 0:
+            if i>=0 and nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                i-=1
+            else:
+                nums1[k] = nums2[j]
+                j-=1
+            k-=1
+```
+17. 
