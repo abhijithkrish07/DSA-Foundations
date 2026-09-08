@@ -277,4 +277,38 @@ class Solution:
                 j-=1
             k-=1
 ```
-17. 
+17. Maximum Average Subarray I
+```
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        sum = 0
+        n = len(nums)
+        for i in range(0,k):
+            sum += nums[i]
+        maxSum = sum
+
+        for j in range (k,n):
+            sum = sum + nums[j] - nums[j-k]
+            maxSum = max(sum,maxSum)
+        return (maxSum)/k
+```
+18. Longest Substring Without Repeating Characters
+Brute Force:
+```
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        substr = set()
+        maxLen = 0
+        for i in range(0, len(s)):
+            for j in range(i,len(s)):
+                n = len(substr)
+                substr.add(s[j])
+                if len(substr) == n:
+                    maxLen = max(len(substr),maxLen)
+                    substr = set()
+                    break
+            maxLen = max(len(substr),maxLen)
+        return maxLen
+        
+```
+20. 
