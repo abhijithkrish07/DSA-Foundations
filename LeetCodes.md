@@ -311,4 +311,40 @@ class Solution:
         return maxLen
         
 ```
-20. 
+19. Longest Substring Without Repeating Characters ⭐
+Brute Force
+```
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        newString = ""
+        lenMax = 0
+
+        for i in range(len(s)):
+            newString = s[i]
+            for j in range(i+1,len(s)):
+                if s[j] in newString:
+                    lenMax = max(len(newString),lenMax)
+                    break
+                else:
+                    newString = newString + s[j]
+            lenMax = max(len(newString),lenMax)
+        
+        return max(len(newString),lenMax)
+        
+```
+Sliding window:
+```
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+       left = maxLen = 0
+       charSet = set()
+       for right in range(len(s)):
+        while s[right] in charSet:
+            charSet.remove(s[left])
+            left+=1
+        charSet.add(s[right])
+        maxLen = max(maxLen, right - left + 1)
+       return maxLen
+```
+20. Longest Repeating Character Replacement
+21. Permutation in String
