@@ -347,4 +347,23 @@ class Solution:
        return maxLen
 ```
 20. Longest Repeating Character Replacement
+```
+from collections import defaultdict
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        i = 0
+        maxCount = result = 0
+        freqMap = defaultdict(int)
+        
+        for j in range(len(s)):
+            freqMap[s[j]]+=1
+            maxCount = max(freqMap.values())
+            window = j - i + 1
+            if window - maxCount > k:
+                freqMap[s[i]] -=1
+                i+=1
+            result = max(result, j - i +1)
+        return result
+
+```
 21. Permutation in String
