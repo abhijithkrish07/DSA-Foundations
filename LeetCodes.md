@@ -367,3 +367,30 @@ class Solution:
 
 ```
 21. Permutation in String
+```
+from collections import defaultdict
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        s1Freq = defaultdict(int)
+        s2Freq = defaultdict(int)
+    
+        n1 = len(s1)
+        n2 = len(s2)
+
+        for i in range(n1):
+            s1Freq[s1[i]]+=1
+        
+        left = 0
+        for right in range(n2):
+            windowLength = right - left
+            s2Freq[s2[right]]+=1
+                
+            if windowLength >= n1:
+                s2Freq[s2[left]]-=1
+                left+=1
+            keys_to_keep = s1Freq.keys()
+            subset_dict = {k: s2Freq[k] for k in keys_to_keep if k in s2Freq}
+            if subset_dict == s1Freq:
+                return True    
+        return False
+```
