@@ -415,4 +415,28 @@ class Solution:
         return minLength
 ```
 23. Minimum Window Substring ⭐
+Brute Force:
+```
+from collections import defaultdict
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> list[int]:
+        m = len(s)
+        n = len(p)
+        freqMap1 = defaultdict(int)
+        result = []
+
+        for char in p:
+            freqMap1[char]+=1
+        
+        for i in range(m):
+            freqMap2 = defaultdict(int)
+            word = s[i:i+n]
+            print (word)
+            for char in word:
+                freqMap2[char]+=1
+            if freqMap1 == freqMap2:
+                result.append(i)
+        return result
+        
+```
 24. Find All Anagrams in a String
