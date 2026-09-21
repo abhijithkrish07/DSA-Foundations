@@ -395,5 +395,24 @@ class Solution:
         return False
 ```
 22. Minimum Size Subarray Sum
+```
+import math
+class Solution:
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+        left,right,sum = 0,0, 0
+        minLength = math.inf
+        n = len(nums)
+        while left <= right and right < n:
+            print(nums[right])
+            sum += nums[right]
+            while sum >= target:
+                minLength = min(minLength,right - left + 1)
+                sum-=nums[left]
+                left+=1
+            right+=1
+        if minLength == math.inf:
+            return 0
+        return minLength
+```
 23. Minimum Window Substring ⭐
 24. Find All Anagrams in a String
